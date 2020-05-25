@@ -1,0 +1,12 @@
+language: bash
+os: linux
+dist: bionic
+
+services:
+  - docker
+
+script:
+  - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+  - docker build -f teamcity-agent-aio/Dockerfile . -t bishoybasily/teamcity-agent-aio:${TRAVIS_TAG}
+  - docker push bishoybasily/teamcity-agent-aio
+
